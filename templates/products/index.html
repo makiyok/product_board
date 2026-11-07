@@ -9,15 +9,18 @@
         <tr>
             <th>商品名</th>
             <th>価格</th>
-            <th>生産者</th>
+            <th>生産者</th>           
+            <th>登録日時</th>
         </tr>
     </thead>
     <tbody>
         {% for product in products %}
         <tr>
-            <td>{{ product.name }}</td>
+            <td>{{ product.name }}</td>            
+            <td>{{ product.created_at.strftime("%Y/%m/%d %H:%M") }}</td>
             <td>{{ "{:,}".format(product.price) }}円</td>
             <td>{{ product.producer_name }}</td>
+            <td>{{ product.created_at.strftime("%Y/%m/%d %H:%M") }}</td>
         </tr>
         {% endfor %}
     </tbody>
