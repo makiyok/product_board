@@ -1,24 +1,23 @@
 import random
 
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
+
+# まだデータベースが無いので、Python のリストで仮のデータを用意する
+PRODUCTS = [
+    {"name": "りんご（ふじ）", "price": 300, "producer_name": "高橋農園"},
+    {"name": "八幡平マッシュルーム", "price": 450, "producer_name": "松尾きのこ園"},
+    {"name": "ほうれん草", "price": 150, "producer_name": "西根ファーム"},
+]
 
 
 @app.route("/")
 def index():
-    return "<h1>大吉</h1><p>八幡平の山に登ると、いいことがあります</p>"
+    return render_template("products/index.html", products=PRODUCTS)
 
 
-@app.route("/hello/<name>")
-def hello(name):
-    return f"<p>こんにちは{name}</p>"
 
 
-@app.route("/omikuji")
-def omikuji():
-    results = ["大吉", "中吉", "小吉", "吉", "凶"]
 
-    result = random.choice(results)
 
-    return f"あなたの運勢は{result}です"
