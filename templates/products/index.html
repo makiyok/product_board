@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>商品一覧</h1>
+<h1>とれたて商品一覧</h1>
 
 {% if products %}
 <table>
@@ -16,9 +16,9 @@
     <tbody>
         {% for product in products %}
         <tr>
-            <td>{{ product.name }}</td>            
-            <td>{{ "{:,}".format(product.price) }}円</td>
             <td><a href="{{ url_for('show', product_id=product.id) }}">{{ product.name }}</a></td>
+            <td>{{ "{:,}".format(product.price) }}円</td>
+            <td>{{ product.producer_name}}</td>
             <td>{{ product.created_at.strftime("%Y/%m/%d %H:%M") }}</td>
         </tr>
         {% endfor %}
